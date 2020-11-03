@@ -64,9 +64,9 @@ public class UserService implements IUserService {
     @Transactional
     public User updatePublicKeyForUser(SetPublicKeyRequestDTO request) {
         User usuario = userRepository
-                .findById(request.getIdUsuario())
+                .findById(request.getIdUser())
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND) );
-        usuario.setPublicKey(request.getChave());
+        usuario.setPublicKey(request.getKey());
         //Uma vez que a chave publica associada ao usuário foi modificada, não há integridade nos dados armazenados
         usuario.clearEncryptedFields();
         return userRepository.save(usuario);

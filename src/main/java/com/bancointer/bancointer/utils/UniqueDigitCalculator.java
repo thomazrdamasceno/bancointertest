@@ -2,35 +2,35 @@ package com.bancointer.bancointer.utils;
 
 import com.bancointer.bancointer.domain.UniqueDigitMapKeys;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class UniqueDigitCalculator {
     //Garantir a não-instanciação da classe
     private UniqueDigitCalculator(){
 
     }
 
-    public static int getUniqueDigit(String n, int k) {
-        UniqueDigitMapKeys keys =  new UniqueDigitMapKeys(n,k);
+    public static int getUniqueDigit(String number, int concatenation) {
+        UniqueDigitMapKeys keys =  new UniqueDigitMapKeys(number, concatenation);
         Integer result = UniqueDigitCacheMemory.getResult(keys);
         if(result == null){
-           result = calculateUniqueDigit(n, k);
+           result = calculateUniqueDigit(number, concatenation);
            UniqueDigitCacheMemory.saveResult(keys, result);
         }
         return result;
     }
 
-    private static int calculateUniqueDigit(String n, int k){
-        StringBuilder p =  new StringBuilder();
-        for(int i=1; i<=k; i++){
-            p.append(n);
-        }
-        return recursiveReduceNumber(p.toString());
+    private static int calculateUniqueDigit(String number, int concatenation){
+        String p = IntStream.rangeClosed(1, concatenation).mapToObj(i -> number).collect(Collectors.joining());
+        return recursiveReduceNumber(p);
     }
 
-    private static Integer recursiveReduceNumber(String p){
-        if(p.length()==1){
-            return Integer.valueOf(p);
+    private static Integer recursiveReduceNumber(String number){
+        if(number.length()==1){
+            return Integer.valueOf(number);
         }
-        int result =  p.chars()
+        int result =  number.chars()
                 .map(Character::getNumericValue)
                 .reduce(0, Integer::sum);
 

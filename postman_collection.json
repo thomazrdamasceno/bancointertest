@@ -11,21 +11,21 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "n",
-						"value": "9875",
+						"key": "",
+						"value": "",
 						"type": "text",
 						"disabled": true
 					},
 					{
-						"key": "k",
-						"value": "4",
+						"key": "",
+						"value": "",
 						"type": "text",
 						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idUsuario\": 1,\r\n    \"n\": \"9785\",\r\n    \"k\": 1\r\n}",
+					"raw": "{\r\n    \"idUser\": 1,\r\n    \"number\": \"97856\",\r\n    \"concatenation\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,7 +76,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"k\": 1,\r\n    \"n\": \"12312312321\"\r\n}",
+					"raw": "{\r\n    \"concatenation\": 1,\r\n    \"number\": \"800\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -173,7 +173,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \r\n    \"nome\": \"Thomaz Reis Damasceno\",\r\n    \"email\": \"thomazrdamasceno@gmail.com\",\r\n    \"publicKey\": \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAydWojUdRIwKngdOqfnlgeY67CX5Xw1krxdPJzzu4UgYeGoq26KrsJeh/ojYuh3763KmsbZUWxOnank/7OJvSeoeDC9YMj3zTHBxkkTokrSk1KE9g8QQqh6cpki4rRKi/dkJn2w72RzpYvdLuSnH/W2nvBeRUnUAYgIowZbMSPmlUxsSQemmZC22r4IePYx/cmAY76K50Q9HJrIr64pFRr+POGBswj5hJnY4uE9EI0Tek+WGLk4800uDVUD7YAa5QLNb7xEEluec2ZYOrJFM8ouoZPvC34YWqTFwL+e9mEC+So8h1p/tQo0vEsJlLPFUPgTuQY95aoCu66lVAmhcyAQIDAQAB\"\r\n\r\n}",
+					"raw": "{\r\n    \r\n    \"name\": \"Thomaz Reis Damasceno\",\r\n    \"email\": \"thomazrdamasceno@gmail.com\",\r\n    \"publicKey\": \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAydWojUdRIwKngdOqfnlgeY67CX5Xw1krxdPJzzu4UgYeGoq26KrsJeh/ojYuh3763KmsbZUWxOnank/7OJvSeoeDC9YMj3zTHBxkkTokrSk1KE9g8QQqh6cpki4rRKi/dkJn2w72RzpYvdLuSnH/W2nvBeRUnUAYgIowZbMSPmlUxsSQemmZC22r4IePYx/cmAY76K50Q9HJrIr64pFRr+POGBswj5hJnY4uE9EI0Tek+WGLk4800uDVUD7YAa5QLNb7xEEluec2ZYOrJFM8ouoZPvC34YWqTFwL+e9mEC+So8h1p/tQo0vEsJlLPFUPgTuQY95aoCu66lVAmhcyAQIDAQAB\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,14 +220,14 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "private-key",
-						"value": "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCbFw3HtpVOvzpAhpnRt7kVC62T2WG4CoUuuF20l56MMtX+lHJiiKzWTw7ca8P43DiMaQ7Gd8sGpC5RQX8Na+U8RMAq8BAFiMVgu5zk1Njt6TyB0tWSAARI8/uvEnc+gy+rYFATHlKOW+ZrFnkVw9AMnSy5EXxvt9uEzZWF7AGaPRoM9lPRWw6+2EkzHLTObcsMdaP2OqXbZIk43dLWHYgIL13r+3fdVUPYuztDgELJqGjnIFA2CLAaeM2t4e4ZnTq5oPZgitUWhgwTyYVB1jyYfeKgEYF11XhBHvrCbd+3YuxbkaaNzOnZdJy+jOI42yalbisi2F+I8h7KVU7c9XulAgMBAAECggEBAJlaY2reVKboGc6iCclAdMelo341jhWweV7oOOgQoFqbDdTMropWASlsRRKZkM8r2tKkM1L2MxAfGhmIvPvle2drx+TtObpvMlRjT1FKUjJ11Tm94yaZ06Lbdjv382chyuoXszYkXpebsaykLRjjZX6DkCxzaOsDDxIzQq2I31DFnd1yHtzBawf46v6dEE2Yh+ANugCVFYNq0iQ/ETSVcL7lYUQt0jMLLTDHrcJO5Bv985s6R12ufHTOYtoOYls46LVNCeWAPApge4RJ5puS/0fWxs/I2OWxGU1JIkgHteyT+BtlO4bhtV3KYVIZT80fZMvhkcJdIa0A7Y9L5HwubYECgYEA0ITrjGCM8BGs8kyps6XdrSLhUGzts8IpoenKWnm89m2U4l8nepQewS8eppyJv+OpcPxXP33HzgmHVknYAJk5P0vDm2yqCeIHXgFKb/CytNkNYhhB+cj3C5NpABVjM49yNLSVfphy1qe6nH5CYKTY76ItxMr3H2f53dIWlIM3jSECgYEAvmee9mx0YfJkmODU3G6/PV4PPWqoHg2VOFoOtEM99Cl3afnzWbP2yvy9vArCm96cxCNZIqOZ5c1ZFGgtixDvlzzHDumdRlZyXu8hZzAVRxVzuRo7HQj9Mcm0s3LvTdaX56wdgYax/7Jmr5XX1VZmnpSE+g7lYu58GOlSjFHeegUCgYB4OhuCHe1FQjvAnPk/7sPI3xKgh53qhmnwxFb7IbQVNguhFhIyOBMfeeanVByMelypG6XGouRAZPgWhY84kSAT4cBP7jCAcEWlKwNbVaIEah2wUKJBvmDK2NyywqInCW9k+jYz/vw/zgfn0Vi+Vm4KhSz0ib5A6neEMWz5hkrSYQKBgB5o6E+NJM1b7EsqZXTLT0na0u5JMY6TNsjoQT7zGlr7oHHRlNc30eu7kAYPZeOFG16MErlgjbzRHjAPL27thoaOE3DDSPYp6lxVLu2PFWbj+zaOBPDvNZkVEQI0EhpJcrtylsfQHm+rK5FRikYtZXhgWhih9mrlkfZclW2JydGNAoGAB449+x75dAjWD6E4SAt81xHZT/u8+VcCbptIadOS2ypbvbTiXsgFiB76WDIcidyBaBZLRY2JDQfWbA34rVjZYLA1LskblF4TkRhgh+NSlL0wG1/BmV5Sh0k0Hg4zsV9IN+bJ4IOTfRde/krWVjhVFmNEcp0G29DAtCv86xNEZ0g=",
+						"key": "",
+						"value": "",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"idUsuario\": 1,\r\n    \"chave\": \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqbQ9wBycTrT4oefL+VAmHEcbd6/aCUXvhFyKrdkSec1yiAJUSjCZH+3qDphAS1OPOktRQrUoMnx47gzSKNnJOYFOxtPAHLWiwyv+CZe2K+AGLvhV2sWlMUcyrXFmEjdKqO/yePUSqbZOHmbe4BOfhdzN+RLitwJd1CuruLwjL6icK1zpCop+JIAcqftlpEKK8zyfSeGicb8SoP1vcw7QMPZVDqFKQp9F9DwSlhiTiEf6n62elYk2dnhzlgLX27uB2RaPR6pQTh9n2vxNGiZNWC+FIvN8vlkz4WfREFzGMqZs9Fa9dkIhXOVk6afXdkI4lXWXEfR/c5ISEiusun+W2QIDAQAB\"\r\n}",
+					"raw": "{\r\n   \"idUser\": 1,\r\n    \"key\": \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqbQ9wBycTrT4oefL+VAmHEcbd6/aCUXvhFyKrdkSec1yiAJUSjCZH+3qDphAS1OPOktRQrUoMnx47gzSKNnJOYFOxtPAHLWiwyv+CZe2K+AGLvhV2sWlMUcyrXFmEjdKqO/yePUSqbZOHmbe4BOfhdzN+RLitwJd1CuruLwjL6icK1zpCop+JIAcqftlpEKK8zyfSeGicb8SoP1vcw7QMPZVDqFKQp9F9DwSlhiTiEf6n62elYk2dnhzlgLX27uB2RaPR6pQTh9n2vxNGiZNWC+FIvN8vlkz4WfREFzGMqZs9Fa9dkIhXOVk6afXdkI4lXWXEfR/c5ISEiusun+W2QIDAQAB\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -268,7 +268,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Nome editado\",\r\n    \"email\": \"emaileditado@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Nome editado\",\r\n    \"email\": \"emaileditado@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

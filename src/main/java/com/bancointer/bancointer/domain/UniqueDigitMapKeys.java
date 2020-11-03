@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class UniqueDigitMapKeys {
 
-    private String n;
-    private Integer k;
+    private String number;
+    private Integer concatenation;
 }

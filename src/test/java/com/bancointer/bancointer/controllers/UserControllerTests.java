@@ -24,13 +24,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTests {
 
     private ICryptography criptografia = new CryptographyRSA2048();
-
     private static final String BASE_PATH = "/api/usuario";
     private static final String NAME = "Thomaz Reis Damasceno";
     private static final String EMAIL = "thomazrdamasceno@gmail.com";
     private static final String INVALID_EMAIL = "INVALID_EMAIL";
     private static final String CONTENT_TYPE = "application/json";
     private static final String INVALID_KEY = "INVALID_KEY";
+    private static final long ID_USER  = 1;
 
     @Autowired
     private MockMvc mockMvc;
@@ -40,7 +40,6 @@ public class UserControllerTests {
 
     @Test
     void testSaveUser() throws Exception {
-
         User user = getValidUser();
         mockMvc.perform(post(BASE_PATH)
                 .contentType(CONTENT_TYPE)
@@ -50,7 +49,6 @@ public class UserControllerTests {
 
     @Test
     void testSaveInvalidUser() throws Exception {
-
         User user = getInvalidUser();
         mockMvc.perform(post(BASE_PATH)
                 .contentType(CONTENT_TYPE)
@@ -63,8 +61,8 @@ public class UserControllerTests {
     void testSetValidPublicKey() throws Exception {
         User user = getValidUser();
         SetPublicKeyRequestDTO requestObject = new SetPublicKeyRequestDTO();
-        requestObject.setIdUsuario(1L);
-        requestObject.setChave(user.getPublicKey());
+        requestObject.setIdUser(ID_USER);
+        requestObject.setKey(user.getPublicKey());
         ResultActions response = mockMvc.perform(post(BASE_PATH+"/set-chave-publica")
                 .contentType(CONTENT_TYPE)
                 .content(objectMapper.writeValueAsString(requestObject)));
@@ -74,16 +72,10 @@ public class UserControllerTests {
     }
 
     @Test
-    void testGetAllUsers() throws Exception {
-        ResultActions response = mockMvc.perform(get(BASE_PATH));
-        response.andExpect(status().isOk());
-    }
-
-    @Test
     void testSetInvalidPublicKey() throws Exception {
         SetPublicKeyRequestDTO requestObject = new SetPublicKeyRequestDTO();
-        requestObject.setIdUsuario(1L);
-        requestObject.setChave(INVALID_KEY);
+        requestObject.setIdUser(ID_USER);
+        requestObject.setKey(INVALID_KEY);
 
         ResultActions response = mockMvc.perform(post(BASE_PATH+"/set-chave-publica")
                 .contentType(CONTENT_TYPE)
@@ -92,10 +84,16 @@ public class UserControllerTests {
         response.andExpect(status().isBadRequest());
     }
 
+    @Test
+    void testGetAllUsers() throws Exception {
+        ResultActions response = mockMvc.perform(get(BASE_PATH));
+        response.andExpect(status().isOk());
+    }
+
     private User getValidUser(){
         User usuario = new User();
         usuario.setEmail(EMAIL);
-        usuario.setNome(NAME);
+        usuario.setName(NAME);
         usuario.setPublicKey(criptografia.getPublicKeyString(criptografia.buildKeyPair().getPublic()));
         return usuario;
     }
@@ -103,7 +101,7 @@ public class UserControllerTests {
     private User getInvalidUser(){
         User usuario = new User();
         usuario.setEmail(INVALID_EMAIL);
-        usuario.setNome("");
+        usuario.setName("");
         usuario.setPublicKey(criptografia.getPublicKeyString(criptografia.buildKeyPair().getPublic()));
         return usuario;
     }

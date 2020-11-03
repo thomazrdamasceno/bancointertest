@@ -16,11 +16,11 @@ public class UniqueDigit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-    private String n;
-    private Integer k;
+    private String number;
+    private Integer concatenation;
     private Integer result;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     @JsonIgnore
     private User user;

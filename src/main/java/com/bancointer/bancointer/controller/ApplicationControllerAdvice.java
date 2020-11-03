@@ -22,6 +22,5 @@ public class ApplicationControllerAdvice {
                 .collect(Collectors.toList());
 
         return new ApiErrors(messages);
-
     }
 }

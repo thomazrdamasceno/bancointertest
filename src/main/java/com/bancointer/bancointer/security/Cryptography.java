@@ -37,7 +37,6 @@ public class Cryptography implements ICryptography {
         assert keyPairGenerator != null;
         keyPairGenerator.initialize(this.getKeySize());
         return keyPairGenerator.genKeyPair();
-
     }
     @Override
     public  String getPublicKeyString(PublicKey publicKey){
@@ -88,7 +87,6 @@ public class Cryptography implements ICryptography {
             logger.error("Erro ao gerar private key", e);
             return null;
         }
-
     }
     @Override
     public  PublicKey getPublicKey(String publicKey) throws InvalidKeySpecException, NoSuchAlgorithmException {

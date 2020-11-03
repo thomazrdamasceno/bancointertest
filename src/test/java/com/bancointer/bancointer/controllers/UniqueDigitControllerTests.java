@@ -16,7 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Data
-public class DigitoUnicoControllerTests {
+public class UniqueDigitControllerTests {
+
+    private static final int INVALID_CONCATENATION  = -1;
+    private static final int VALID_CONCATENATION  = 1;
+    private static final String INVALID_NUMBER  = "-12312";
+    private static final String VALID_NUMBER  = "9785";
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,7 +30,6 @@ public class DigitoUnicoControllerTests {
     private ObjectMapper objectMapper;
 
     private ResultActions resultResponseCalculateDigit(CalculateDigitRequestDTO request) throws Exception {
-
         return mockMvc.perform(post("/api/digito-unico/calcular-digito/")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(request)));
@@ -33,46 +37,30 @@ public class DigitoUnicoControllerTests {
 
     @Test
     public void testCalculateDigit() throws Exception {
-        String n = "9785";
-        int k = 1;
         CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
-        request.setK(k);
-        request.setN(n);
+        request.setConcatenation(VALID_CONCATENATION);
+        request.setNumber(VALID_NUMBER);
         resultResponseCalculateDigit(request)
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("result")));
     }
 
     @Test
-    public void testCalculateInvalidKDigit() throws Exception {
-        String validN = "9785";
-        int invalidK = -1;
+    public void testCalculateInvalidConcatenation() throws Exception {
         CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
-        request.setK(invalidK);
-        request.setN(validN);
+        request.setConcatenation(INVALID_CONCATENATION);
+        request.setNumber(VALID_NUMBER);
         resultResponseCalculateDigit(request)
                  .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void testCalculateInvalidNDigit() throws Exception {
-        String invalidN = "-9785";
-        int validK = 1;
+    public void testCalculateInvalidNumber() throws Exception {
         CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
-        request.setK(validK);
-        request.setN(invalidN);
+        request.setConcatenation(VALID_CONCATENATION);
+        request.setNumber(INVALID_NUMBER);
         resultResponseCalculateDigit(request)
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    public void testCalculateOtherInvalidNDigit() throws Exception {
-        String invalidN = "-9785asda";
-        int validK = 1;
-        CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
-        request.setK(validK);
-        request.setN(invalidN);
-        resultResponseCalculateDigit(request)
-                .andExpect(status().isBadRequest());
-    }
 }

@@ -34,8 +34,8 @@ public class UserServiceTest {
         SetPublicKeyRequestDTO request = new SetPublicKeyRequestDTO();
         Long idUser = 1L;
         String keyToUpdate = "KEY_TO_UPDATE";
-        request.setChave(keyToUpdate);
-        request.setIdUsuario(idUser);
+        request.setKey(keyToUpdate);
+        request.setIdUser(idUser);
         User userToUpdate = getDefaultUser();
         userToUpdate.setId(idUser);
         when(repository.findById(idUser)).thenReturn(Optional.of( userToUpdate ));
@@ -46,7 +46,7 @@ public class UserServiceTest {
 
     private User getDefaultUser(){
         User user = new User();
-        user.setNome("Thomaz Reis Damasceno");
+        user.setName("Thomaz Reis Damasceno");
         user.setEmail("thomazrdamasceno@gmail.com");
         return user;
     }

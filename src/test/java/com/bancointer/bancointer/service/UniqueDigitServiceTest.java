@@ -22,8 +22,8 @@ public class UniqueDigitServiceTest {
     @Test
     public void testCalculateDigit(){
         CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
-        request.setK(1);
-        request.setN("9875");
+        request.setConcatenation(1);
+        request.setNumber("9875");
         UniqueDigit digitReturned = uniqueDigitService.calculateDigit(request);
         assertEquals(digitReturned.getResult(),2);
     }

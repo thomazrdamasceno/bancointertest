@@ -8,6 +8,7 @@ import com.bancointer.bancointer.dto.CalculateDigitRequestDTO;
 import com.bancointer.bancointer.utils.UniqueDigitCalculator;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,23 +31,35 @@ public class UniqueDigitService implements IUniqueDigitService {
     @Override
     public UniqueDigit calculateDigit(CalculateDigitRequestDTO request) {
         UniqueDigit uniqueDigit = new UniqueDigit();
-        uniqueDigit.setK(request.getK());
-        uniqueDigit.setN(request.getN());
-        uniqueDigit.setResult(UniqueDigitCalculator.getUniqueDigit(request.getN(),request.getK()));
+        uniqueDigit.setConcatenation(request.getConcatenation());
+        uniqueDigit.setNumber(request.getNumber());
+        uniqueDigit.setResult(UniqueDigitCalculator.getUniqueDigit(request.getNumber(),request.getConcatenation()));
         //Se houve usuário associado a requisição, faz a associação dele ao digito
-        if(request.getIdUsuario() != null) {
-          return this.associateUserToCalculation(request.getIdUsuario(), uniqueDigit);
+        if(request.getIdUser() != null) {
+          return this.associateUserToCalculation(request.getIdUser(), uniqueDigit);
         }
        return uniqueDigit;
     }
 
     @Transactional
+    @Override
     public List<UniqueDigit> getAllCalculationsByUserId(Long idUsuario){
        return  uniqueDigitRepository.getAllCalculationsByUser(idUsuario);
     }
 
     @Transactional
+    @Override
+    public boolean checkIfCalculationExistsForUser(Long idUser, String number, int concatenation){
+        return  uniqueDigitRepository.checkIfCalculationExistsForUser(idUser, number,concatenation);
+    }
+
+    @Transactional
     UniqueDigit associateUserToCalculation(Long idUsuario, UniqueDigit uniqueDigit){
+
+        //Verifica se já existe um cálculo com os mesmos parâmetros já salvo para o usuário em questão
+        if( checkIfCalculationExistsForUser(idUsuario, uniqueDigit.getNumber(), uniqueDigit.getConcatenation()) ) {
+            return uniqueDigit;
+        }
         User user = userRepository.findById(idUsuario)
             .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND) );
         uniqueDigit.setUser(user);

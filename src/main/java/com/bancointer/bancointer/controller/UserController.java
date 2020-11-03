@@ -29,8 +29,7 @@ public class UserController {
     public User updatePublicKeyForUser(@Valid @RequestBody SetPublicKeyRequestDTO request ){
         return userService.updatePublicKeyForUser(request);
     }
-
-
+    
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Lista todos os usuários cadastrados no sistema")

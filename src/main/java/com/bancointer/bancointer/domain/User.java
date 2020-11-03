@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,7 +32,7 @@ public class User implements IUser {
     @Column(length = 2048)
     @ApiModelProperty(notes = "nome do usuário")
     @NotEmpty(message = "{emptyName}")
-    private String  nome;
+    private String  name;
 
     @Column(length = 2048)
     @ApiModelProperty(notes = "Email do usuário")
@@ -42,20 +43,19 @@ public class User implements IUser {
     @ApiModelProperty(notes = "Chave pública que será utilizada para criptografar os dados do usuário")
     private String publicKey;
 
-    @OneToMany(mappedBy = "user", targetEntity = UniqueDigit.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @ApiModelProperty(hidden = true)
-    private Set<UniqueDigit> digitosCalculados = new HashSet<>();
+    @OneToMany(mappedBy = "user", targetEntity = UniqueDigit.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UniqueDigit> calculatedDigits;
 
     @Override
     public User encryptFields() {
-        this.setNome(cryptography.encrypt(this.getPublicKey(), this.getNome()));
+        this.setName(cryptography.encrypt(this.getPublicKey(), this.getName()));
         this.setEmail(cryptography.encrypt(this.getPublicKey(), this.getEmail()));
         return this;
     }
 
     @Override
     public void clearEncryptedFields() {
-        this.setNome(null);
+        this.setName(null);
         this.setEmail(null);
     }
 

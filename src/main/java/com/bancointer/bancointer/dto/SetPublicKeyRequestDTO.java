@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 public class SetPublicKeyRequestDTO {
 
     @IsValidPublicKey
-    private String chave;
+    private String key;
 
     @NotNull(message = "{notNullUserId}")
-    private Long idUsuario;
+    private Long idUser;
 }

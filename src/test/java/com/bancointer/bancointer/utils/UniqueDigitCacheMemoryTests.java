@@ -4,24 +4,22 @@ import com.bancointer.bancointer.domain.UniqueDigitMapKeys;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigInteger;
-import java.util.stream.IntStream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
+import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UniqueDigitCacheMemoryTests {
 
+    private static final int CONCATENATION  = 1;
+    private static final String NUMBER  = "9785";
+    private static final int RESULT = 2;
+
     @Test
     @DisplayName("Teste de inclusão e recuperação de itens pelas chaves n e k do cache")
     void testAddAndGetItemsUsingKeys(){
-        Integer k = 1;
-        String n = "9875";
-        Integer result = 25;
-        UniqueDigitCacheMemory.saveResult(new UniqueDigitMapKeys(n,k), result);
-        Integer resultCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys(n,k));
-        assertEquals(result, resultCache);
+        UniqueDigitCacheMemory.saveResult(new UniqueDigitMapKeys(NUMBER, CONCATENATION), RESULT);
+        Integer resultCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys(NUMBER, CONCATENATION));
+        assertEquals(RESULT, resultCache);
     }
 
     @Test
@@ -30,8 +28,8 @@ public class UniqueDigitCacheMemoryTests {
         Integer k = 1;
         String n = "9875";
         Integer result = 25;
-        UniqueDigitCacheMemory.saveResult(new UniqueDigitMapKeys(n,k), result);
-        Integer resultCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys("55",2));
+        UniqueDigitCacheMemory.saveResult(new UniqueDigitMapKeys(NUMBER, CONCATENATION), result);
+        Integer resultCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys("55",RESULT));
         assertNull(resultCache);
     }
 
