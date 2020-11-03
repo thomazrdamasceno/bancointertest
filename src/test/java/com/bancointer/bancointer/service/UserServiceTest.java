@@ -1,10 +1,8 @@
 package com.bancointer.bancointer.service;
 
-import com.bancointer.bancointer.model.User;
+import com.bancointer.bancointer.domain.User;
 import com.bancointer.bancointer.repository.IUserRepository;
 import com.bancointer.bancointer.requestmodel.SetPublicKeyRequestObject;
-import com.bancointer.bancointer.security.CryptographyRSA2048;
-import com.bancointer.bancointer.security.ICryptography;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Optional;
@@ -19,19 +17,16 @@ public class UserServiceTest {
 
     @Before
     public void init() {
-
         repository  = mock(IUserRepository.class);
         userService = new UserService(repository);
     }
 
     @Test
     public void testWhenSaveAUserThePublicKeyMustBeConfigured(){
-
         User user = getDefaultUser();
         when(repository.save(user)).thenReturn(user);
         User returnedUser = userService.save(user);
         assertNotNull(returnedUser.getPublicKey());
-
     }
 
     @Test
@@ -47,7 +42,6 @@ public class UserServiceTest {
         when(repository.save(userToUpdate)).thenReturn(userToUpdate);
         User returnedUser = userService.updatePublicKeyForUser(request);
         assertEquals(returnedUser.getPublicKey(), keyToUpdate);
-
     }
 
     private User getDefaultUser(){

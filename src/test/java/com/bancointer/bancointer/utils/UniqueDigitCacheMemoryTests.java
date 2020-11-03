@@ -1,8 +1,14 @@
 package com.bancointer.bancointer.utils;
 
-import com.bancointer.bancointer.model.UniqueDigitMapKeys;
+import com.bancointer.bancointer.domain.UniqueDigitMapKeys;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.math.BigInteger;
+import java.util.stream.IntStream;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UniqueDigitCacheMemoryTests {
@@ -10,7 +16,6 @@ public class UniqueDigitCacheMemoryTests {
     @Test
     @DisplayName("Teste de inclusão e recuperação de itens pelas chaves n e k do cache")
     void testAddAndGetItemsUsingKeys(){
-
         Integer k = 1;
         String n = "9875";
         Integer result = 25;
@@ -22,7 +27,6 @@ public class UniqueDigitCacheMemoryTests {
     @Test
     @DisplayName("Ao tentar recuperar um conjunto k e n inexistente, o resultado deve ser null")
     void testNonExistentKeys(){
-
         Integer k = 1;
         String n = "9875";
         Integer result = 25;
@@ -34,14 +38,10 @@ public class UniqueDigitCacheMemoryTests {
     @Test
     @DisplayName("O Cache deve guardar apenas os ultimos 10 regitros")
     void tesSaveOnly10LatestRecords(){
-
         int countItems = 11;
-        for(int i = 1; i <= countItems; i++){
-            UniqueDigitMapKeys keys = new UniqueDigitMapKeys(String.valueOf(i),i);
-            UniqueDigitCacheMemory.saveResult(keys, 25);
-        }
-
+        IntStream.rangeClosed(1, countItems).mapToObj(i -> new UniqueDigitMapKeys(String.valueOf(i), i)).forEach(keys -> UniqueDigitCacheMemory.saveResult(keys, 25));
         int totalItemsInCache =  UniqueDigitCacheMemory.getTotalItems();
         assertTrue(totalItemsInCache <=10 );
     }
+
 }

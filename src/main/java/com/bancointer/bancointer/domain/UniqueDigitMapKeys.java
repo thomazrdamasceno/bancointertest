@@ -1,4 +1,4 @@
-package com.bancointer.bancointer.model;
+package com.bancointer.bancointer.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

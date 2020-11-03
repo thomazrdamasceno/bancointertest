@@ -1,5 +1,5 @@
 package com.bancointer.bancointer.repository;
-import com.bancointer.bancointer.model.User;
+import com.bancointer.bancointer.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

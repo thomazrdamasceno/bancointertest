@@ -1,4 +1,4 @@
-package com.bancointer.bancointer.model;
+package com.bancointer.bancointer.domain;
 import com.bancointer.bancointer.security.CryptographyRSA2048;
 import com.bancointer.bancointer.validators.IsValidPublicKey;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -21,7 +22,6 @@ public class User implements IUser {
 
     static CryptographyRSA2048 cryptography  = new CryptographyRSA2048();
     static Logger logger =  LoggerFactory.getLogger(User.class);
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,14 +42,12 @@ public class User implements IUser {
     @ApiModelProperty(notes = "Chave pública que será utilizada para criptografar os dados do usuário")
     private String publicKey;
 
-    @OneToMany(mappedBy = "user", targetEntity = UniqueDigit.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", targetEntity = UniqueDigit.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @ApiModelProperty(hidden = true)
-    private List<UniqueDigit> digitosCalculados;
-
+    private Set<UniqueDigit> digitosCalculados = new HashSet<>();
 
     @Override
     public User encryptFields() {
-
         this.setNome(cryptography.encrypt(this.getPublicKey(), this.getNome()));
         this.setEmail(cryptography.encrypt(this.getPublicKey(), this.getEmail()));
         return this;

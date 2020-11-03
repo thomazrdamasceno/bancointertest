@@ -17,9 +17,7 @@ public class Cryptography implements ICryptography {
 
     private static Base64.Encoder encoder = Base64.getEncoder();
     private static Base64.Decoder decoder = Base64.getDecoder();
-
     static Logger logger =  LoggerFactory.getLogger(Cryptography.class);
-
     private int keySize;
     private String algorithm;
 
@@ -30,7 +28,6 @@ public class Cryptography implements ICryptography {
 
     @Override
     public  KeyPair buildKeyPair() {
-
         KeyPairGenerator keyPairGenerator = null;
         try {
             keyPairGenerator = KeyPairGenerator.getInstance(this.getAlgorithm());
@@ -44,23 +41,19 @@ public class Cryptography implements ICryptography {
     }
     @Override
     public  String getPublicKeyString(PublicKey publicKey){
-
         return encoder.encodeToString(publicKey.getEncoded());
     }
 
     @Override
     public String getPrivateKeyString(PrivateKey privateKey){
-
         return encoder.encodeToString(privateKey.getEncoded());
     }
 
     @Override
     public String encrypt(String  publicKeyString, String message)  {
-
-       if(message == null || message.length() == 0){
+        if(message == null || message.length() == 0){
            return "";
-       }
-
+        }
         Cipher cipher;
         try {
             cipher = Cipher.getInstance(this.getAlgorithm());
@@ -70,29 +63,22 @@ public class Cryptography implements ICryptography {
             logger.error("Erro ao criptografar String", e);
             return null;
         }
-
     }
     @Override
     public String decrypt(String privateKeyString, String text)  {
-
         try{
             Cipher cipher = Cipher.getInstance(this.getAlgorithm());
             cipher.init(Cipher.DECRYPT_MODE, this.getPrivateKey(privateKeyString));
-
             return new String(cipher.doFinal(decoder.decode(text)));
         }catch(Exception e){
             logger.error("Erro ao descriptografar String", e);
             return null;
         }
-
     }
     @Override
     public PrivateKey getPrivateKey(String privateKey) {
-
         try{
-
             byte[] keyBytes = decoder.decode(privateKey.getBytes());
-
             PKCS8EncodedKeySpec spec =
                     new PKCS8EncodedKeySpec(keyBytes);
             KeyFactory kf = KeyFactory.getInstance(this.getAlgorithm());
@@ -106,15 +92,11 @@ public class Cryptography implements ICryptography {
     }
     @Override
     public  PublicKey getPublicKey(String publicKey) throws InvalidKeySpecException, NoSuchAlgorithmException {
-
-
             byte[] keyBytes = decoder.decode(publicKey.getBytes());
-
             X509EncodedKeySpec spec =
                     new X509EncodedKeySpec(keyBytes);
             KeyFactory kf = KeyFactory.getInstance(this.getAlgorithm());
             return kf.generatePublic(spec);
-
     }
 
     @Override

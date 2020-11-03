@@ -12,9 +12,6 @@ public class CryptographyService implements ICryptographyService {
 
     @Override
     public Map<String, String> generateKeyPair() {
-
         return  cryptography.getKeyPairMap();
     }
-
-
 }

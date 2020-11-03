@@ -10,7 +10,6 @@ public class CryptographyRSA2048Tests {
 
     @Test
     void testEncryptAndDecrypt()  {
-
         KeyPair key = this.cryptographyRSA2048.buildKeyPair();
         String originalName = "Thomaz";
         String encryptName = this.cryptographyRSA2048.encrypt(this.cryptographyRSA2048.getPublicKeyString(key.getPublic()), originalName);

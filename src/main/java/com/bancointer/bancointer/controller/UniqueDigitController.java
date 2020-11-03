@@ -1,6 +1,6 @@
 package com.bancointer.bancointer.controller;
 
-import com.bancointer.bancointer.model.UniqueDigit;
+import com.bancointer.bancointer.domain.UniqueDigit;
 import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
 import com.bancointer.bancointer.service.UniqueDigitService;
 import lombok.Data;
@@ -23,13 +23,11 @@ public class UniqueDigitController {
 
     @PostMapping(path="/calcular-digito/")
     public UniqueDigit calculateUniqueDigit(@Valid @RequestBody CalculateDigitRequestObject request){
-
         return uniqueDigitService.calculateDigit(request);
     }
 
     @GetMapping(path="/listar-calculos/{idUsuario}")
     public List<UniqueDigit> listUniqueDigits(@PathVariable Long idUsuario){
-
         return this.uniqueDigitService.getAllCalculationsByUserId(idUsuario);
     }
 }

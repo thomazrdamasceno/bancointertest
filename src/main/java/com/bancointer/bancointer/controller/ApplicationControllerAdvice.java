@@ -16,7 +16,6 @@ public class ApplicationControllerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiErrors handlerValidationErrors(MethodArgumentNotValidException ex){
-
         BindingResult bidingResult =   ex.getBindingResult();
         List<String> messages = bidingResult.getAllErrors().stream()
                 .map(objectError -> objectError.getDefaultMessage())

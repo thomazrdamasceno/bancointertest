@@ -1,6 +1,6 @@
 package com.bancointer.bancointer.service;
 
-import com.bancointer.bancointer.model.UniqueDigit;
+import com.bancointer.bancointer.domain.UniqueDigit;
 import com.bancointer.bancointer.repository.IUniqueDigitRepository;
 import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
 import org.junit.Before;
@@ -15,10 +15,8 @@ public class UniqueDigitServiceTest {
 
     @Before
     public void init(){
-
         uniqueDigitRepository = mock(IUniqueDigitRepository.class);
         uniqueDigitService = new UniqueDigitService(null,uniqueDigitRepository);
-
     }
 
     @Test
@@ -29,6 +27,5 @@ public class UniqueDigitServiceTest {
         UniqueDigit digitReturned = uniqueDigitService.calculateDigit(request);
         assertEquals(digitReturned.getResult(),2);
     }
-
 
 }

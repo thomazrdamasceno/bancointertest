@@ -26,17 +26,15 @@ public class DigitoUnicoControllerTests {
 
     private ResultActions resultResponseCalculateDigit(CalculateDigitRequestObject request) throws Exception {
 
-        return   mockMvc.perform(post("/api/digito-unico/calcular-digito/")
+        return mockMvc.perform(post("/api/digito-unico/calcular-digito/")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(request)));
     }
 
     @Test
     public void testCalculateDigit() throws Exception {
-
         String n = "9785";
         int k = 1;
-
         CalculateDigitRequestObject request = new CalculateDigitRequestObject();
         request.setK(k);
         request.setN(n);
@@ -47,46 +45,34 @@ public class DigitoUnicoControllerTests {
 
     @Test
     public void testCalculateInvalidKDigit() throws Exception {
-
         String validN = "9785";
         int invalidK = -1;
-
         CalculateDigitRequestObject request = new CalculateDigitRequestObject();
         request.setK(invalidK);
         request.setN(validN);
-
         resultResponseCalculateDigit(request)
                  .andExpect(status().isBadRequest());
-
     }
 
     @Test
     public void testCalculateInvalidNDigit() throws Exception {
-
         String invalidN = "-9785";
         int validK = 1;
-
         CalculateDigitRequestObject request = new CalculateDigitRequestObject();
         request.setK(validK);
         request.setN(invalidN);
-
         resultResponseCalculateDigit(request)
                 .andExpect(status().isBadRequest());
-
     }
 
     @Test
     public void testCalculateOtherInvalidNDigit() throws Exception {
-
         String invalidN = "-9785asda";
         int validK = 1;
-
         CalculateDigitRequestObject request = new CalculateDigitRequestObject();
         request.setK(validK);
         request.setN(invalidN);
-
         resultResponseCalculateDigit(request)
                 .andExpect(status().isBadRequest());
-
     }
 }

@@ -1,4 +1,4 @@
-package com.bancointer.bancointer.model;
+package com.bancointer.bancointer.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

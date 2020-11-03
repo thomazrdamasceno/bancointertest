@@ -1,6 +1,6 @@
 package com.bancointer.bancointer.validators;
 
-import com.bancointer.bancointer.model.User;
+import com.bancointer.bancointer.domain.User;
 import com.bancointer.bancointer.security.CryptographyRSA2048;
 import com.bancointer.bancointer.security.ICryptography;
 import com.bancointer.bancointer.service.IUserService;
@@ -15,9 +15,7 @@ class IsValidPublicKeyValidator implements ConstraintValidator<IsValidPublicKey,
     @Autowired
     private IUserService userService;
 
-    public IsValidPublicKeyValidator(){
-
-    }
+    public IsValidPublicKeyValidator(){}
 
     @Override
     public void initialize(IsValidPublicKey constraint) {
@@ -25,27 +23,21 @@ class IsValidPublicKeyValidator implements ConstraintValidator<IsValidPublicKey,
 
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
-
         String publicKeyString = "";
-
         if(object instanceof User){
             User user = (User) object;
             publicKeyString = user.getPublicKey();
-
             if(publicKeyString == null && user.getId()!=0){
                 publicKeyString = userService.getPublicKeyByUserId(user.getId());
-
             }
         }
         else if(object instanceof String){
             publicKeyString  = (String) object;
         }
-
-      try{
-          return cryptography.getPublicKey(publicKeyString).getAlgorithm().equals("RSA");
-      }catch(Exception e){
+        try{
+            return cryptography.getPublicKey(publicKeyString).getAlgorithm().equals("RSA");
+        }catch(Exception e){
             return false;
-      }
-
+        }
     }
 }

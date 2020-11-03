@@ -22,7 +22,6 @@ public class CryptographyControllerTests {
 
     @Test
     void testGenerateKeyPair() throws Exception {
-
         ResultActions response = mockMvc.perform(get("/api/criptografia/gerar-key-pair"));
         response.andExpect(status().isOk())
                 .andExpect(content().string(containsString("publicKey")))

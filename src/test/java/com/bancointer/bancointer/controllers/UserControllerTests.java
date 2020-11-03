@@ -1,5 +1,5 @@
 package com.bancointer.bancointer.controllers;
-import com.bancointer.bancointer.model.User;
+import com.bancointer.bancointer.domain.User;
 import com.bancointer.bancointer.requestmodel.SetPublicKeyRequestObject;
 import com.bancointer.bancointer.security.CryptographyRSA2048;
 import com.bancointer.bancointer.security.ICryptography;
@@ -26,7 +26,11 @@ public class UserControllerTests {
     private ICryptography criptografia = new CryptographyRSA2048();
 
     private static final String BASE_PATH = "/api/usuario";
+    private static final String NAME = "Thomaz Reis Damasceno";
+    private static final String EMAIL = "thomazrdamasceno@gmail.com";
+    private static final String INVALID_EMAIL = "INVALID_EMAIL";
     private static final String CONTENT_TYPE = "application/json";
+    private static final String INVALID_KEY = "INVALID_KEY";
 
     @Autowired
     private MockMvc mockMvc;
@@ -42,7 +46,6 @@ public class UserControllerTests {
                 .contentType(CONTENT_TYPE)
                 .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isOk());
-
     }
 
     @Test
@@ -53,42 +56,34 @@ public class UserControllerTests {
                 .contentType(CONTENT_TYPE)
                 .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isBadRequest());
-
     }
 
     @Test
     @DisplayName("A chave publica deve ser setada no objeto usuario")
     void testSetValidPublicKey() throws Exception {
-
         User user = getValidUser();
-
         SetPublicKeyRequestObject requestObject = new  SetPublicKeyRequestObject();
         requestObject.setIdUsuario(1L);
         requestObject.setChave(user.getPublicKey());
-
         ResultActions response = mockMvc.perform(post(BASE_PATH+"/set-chave-publica")
                 .contentType(CONTENT_TYPE)
                 .content(objectMapper.writeValueAsString(requestObject)));
 
         response.andExpect(status().isOk())
                 .andExpect(content().string(containsString(user.getPublicKey())));
-
     }
 
     @Test
     void testGetAllUsers() throws Exception {
-
         ResultActions response = mockMvc.perform(get(BASE_PATH));
         response.andExpect(status().isOk());
-
     }
 
     @Test
     void testSetInvalidPublicKey() throws Exception {
-
         SetPublicKeyRequestObject requestObject = new  SetPublicKeyRequestObject();
         requestObject.setIdUsuario(1L);
-        requestObject.setChave("invalidKey");
+        requestObject.setChave(INVALID_KEY);
 
         ResultActions response = mockMvc.perform(post(BASE_PATH+"/set-chave-publica")
                 .contentType(CONTENT_TYPE)
@@ -99,16 +94,15 @@ public class UserControllerTests {
 
     private User getValidUser(){
         User usuario = new User();
-        usuario.setEmail("thomazrdamasceno@gmail.com");
-        usuario.setNome("Thomaz Reis Damasceno");
+        usuario.setEmail(EMAIL);
+        usuario.setNome(NAME);
         usuario.setPublicKey(criptografia.getPublicKeyString(criptografia.buildKeyPair().getPublic()));
         return usuario;
     }
 
-
     private User getInvalidUser(){
         User usuario = new User();
-        usuario.setEmail("mail");
+        usuario.setEmail(INVALID_EMAIL);
         usuario.setNome("");
         usuario.setPublicKey(criptografia.getPublicKeyString(criptografia.buildKeyPair().getPublic()));
         return usuario;

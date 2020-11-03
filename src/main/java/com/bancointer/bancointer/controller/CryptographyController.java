@@ -24,7 +24,6 @@ public class CryptographyController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Gera um par de chaves (publica e privada) para ser utilizada no processo de criptografia/descriptografia")
     public Map<String, String> generateKeyPair(){
-
-       return cryptographyService.generateKeyPair();
+        return cryptographyService.generateKeyPair();
     }
 }
