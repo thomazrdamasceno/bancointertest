@@ -37,6 +37,7 @@ public class Cryptography implements ICryptography {
         } catch (NoSuchAlgorithmException e) {
             logger.error("Erro ao gerar keypar", e);
         }
+        assert keyPairGenerator != null;
         keyPairGenerator.initialize(this.getKeySize());
         return keyPairGenerator.genKeyPair();
 
@@ -60,7 +61,7 @@ public class Cryptography implements ICryptography {
            return "";
        }
 
-        Cipher cipher = null;
+        Cipher cipher;
         try {
             cipher = Cipher.getInstance(this.getAlgorithm());
             cipher.init(Cipher.ENCRYPT_MODE, this.getPublicKey(publicKeyString));

@@ -17,14 +17,18 @@ import java.util.List;
 @Data
 public class UserController {
 
-    @Autowired
     private IUserService userService;
+
+    @Autowired
+    public UserController(IUserService userService){
+        this.userService = userService;
+    }
 
     @PostMapping("/set-chave-publica")
     @ResponseStatus(HttpStatus.OK)
-    public User setPublicKey(@Valid @RequestBody SetPublicKeyRequestObject request ){
+    public User updatePublicKeyForUser(@Valid @RequestBody SetPublicKeyRequestObject request ){
 
-       return userService.setPublicKey(request);
+       return userService.updatePublicKeyForUser(request);
     }
 
 

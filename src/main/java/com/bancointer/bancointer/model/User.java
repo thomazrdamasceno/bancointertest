@@ -56,10 +56,9 @@ public class User implements IUser {
     }
 
     @Override
-    public User clearEncryptedFields() {
+    public void clearEncryptedFields() {
         this.setNome(null);
         this.setEmail(null);
-        return this;
     }
 
 }

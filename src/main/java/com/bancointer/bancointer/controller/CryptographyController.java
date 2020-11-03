@@ -13,8 +13,12 @@ import java.util.Map;
 @ApiOperation("Criptografia")
 public class CryptographyController {
 
-    @Autowired
     private ICryptographyService cryptographyService;
+
+    @Autowired
+    public CryptographyController(ICryptographyService cryptographyService){
+        this.cryptographyService = cryptographyService;
+    }
 
     @GetMapping(path="/gerar-key-pair")
     @ResponseStatus(HttpStatus.OK)

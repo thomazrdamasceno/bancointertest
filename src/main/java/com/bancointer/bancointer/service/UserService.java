@@ -17,7 +17,7 @@ import java.util.Optional;
 @Service
 public class UserService implements IUserService {
 
-    private ICryptography cryptographyRSA2048 = new CryptographyRSA2048();
+    private final ICryptography cryptographyRSA2048 = new CryptographyRSA2048();
 
     private IUserRepository userRepository;
 
@@ -29,18 +29,7 @@ public class UserService implements IUserService {
 
     public User save(User user){
 
-        if(user.getPublicKey() == null){
-
-            String publicKey = getPublicKeyByUserId(user.getId());
-
-            if(publicKey == null){
-                KeyPair keypar = cryptographyRSA2048.buildKeyPair();
-                publicKey =  cryptographyRSA2048.getPublicKeyString(keypar.getPublic());
-            }
-
-            user.setPublicKey(publicKey);
-        }
-
+        resolvePublicKeyForUser(user);
         user.encryptFields();
         return this.userRepository.save(user);
     }
@@ -54,7 +43,7 @@ public class UserService implements IUserService {
     public Optional<User> findById(Long id){
 
         Optional<User> optionalUser = this.userRepository.findById(id);
-        User user =  optionalUser.isPresent() ? optionalUser.get(): null;
+        User user = optionalUser.orElse(null);
 
         return  Optional.ofNullable(user);
     }
@@ -70,7 +59,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User setPublicKey(SetPublicKeyRequestObject request) {
+    public User updatePublicKeyForUser(SetPublicKeyRequestObject request) {
 
         User usuario = userRepository
                 .findById(request.getIdUsuario())
@@ -81,6 +70,21 @@ public class UserService implements IUserService {
         //Uma vez que a chave publica associada ao usuário foi modificada, não há integridade nos dados armazenados
         usuario.clearEncryptedFields();
         return userRepository.save(usuario);
+    }
+
+    private void resolvePublicKeyForUser(User user){
+
+        if(user.getPublicKey() == null){
+
+            String publicKey = getPublicKeyByUserId(user.getId());
+
+            if(publicKey == null){
+                KeyPair keypar = cryptographyRSA2048.buildKeyPair();
+                publicKey =  cryptographyRSA2048.getPublicKeyString(keypar.getPublic());
+            }
+
+            user.setPublicKey(publicKey);
+        }
     }
 
 }

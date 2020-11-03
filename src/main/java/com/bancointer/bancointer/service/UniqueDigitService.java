@@ -2,7 +2,7 @@ package com.bancointer.bancointer.service;
 
 import com.bancointer.bancointer.model.UniqueDigit;
 import com.bancointer.bancointer.model.User;
-import com.bancointer.bancointer.repository.UniqueDigitRepository;
+import com.bancointer.bancointer.repository.IUniqueDigitRepository;
 import com.bancointer.bancointer.repository.IUserRepository;
 import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
 import com.bancointer.bancointer.utils.UniqueDigitUtils;
@@ -17,11 +17,14 @@ import java.util.List;
 @Data
 public class UniqueDigitService implements IUniqueDigitService {
 
-    @Autowired
-    private UniqueDigitRepository uniqueDigitRepository;
+    private IUniqueDigitRepository uniqueDigitRepository;
+    private IUserRepository userRepository;
 
     @Autowired
-    private IUserRepository userRepository;
+    public UniqueDigitService(IUserRepository userRepository, IUniqueDigitRepository uniqueDigitRepository){
+        this.uniqueDigitRepository = uniqueDigitRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UniqueDigit calculateDigit(CalculateDigitRequestObject request) {

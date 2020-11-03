@@ -8,7 +8,7 @@ import java.util.Map;
 @Service
 public class CryptographyService implements ICryptographyService {
 
-    private ICryptography cryptography = new CryptographyRSA2048();
+    private final ICryptography cryptography = new CryptographyRSA2048();
 
     @Override
     public Map<String, String> generateKeyPair() {

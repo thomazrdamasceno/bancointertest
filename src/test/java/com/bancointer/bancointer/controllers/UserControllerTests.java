@@ -3,7 +3,6 @@ import com.bancointer.bancointer.model.User;
 import com.bancointer.bancointer.requestmodel.SetPublicKeyRequestObject;
 import com.bancointer.bancointer.security.CryptographyRSA2048;
 import com.bancointer.bancointer.security.ICryptography;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +45,6 @@ public class UserControllerTests {
 
     }
 
-
     @Test
     void testSaveInvalidUser() throws Exception {
 
@@ -65,7 +63,7 @@ public class UserControllerTests {
         User user = getValidUser();
 
         SetPublicKeyRequestObject requestObject = new  SetPublicKeyRequestObject();
-        requestObject.setIdUsuario(Long.valueOf(1));
+        requestObject.setIdUsuario(1L);
         requestObject.setChave(user.getPublicKey());
 
         ResultActions response = mockMvc.perform(post(BASE_PATH+"/set-chave-publica")
@@ -88,10 +86,8 @@ public class UserControllerTests {
     @Test
     void testSetInvalidPublicKey() throws Exception {
 
-        User usuario = getValidUser();
-
         SetPublicKeyRequestObject requestObject = new  SetPublicKeyRequestObject();
-        requestObject.setIdUsuario(Long.valueOf(1));
+        requestObject.setIdUsuario(1L);
         requestObject.setChave("invalidKey");
 
         ResultActions response = mockMvc.perform(post(BASE_PATH+"/set-chave-publica")
@@ -99,8 +95,6 @@ public class UserControllerTests {
                 .content(objectMapper.writeValueAsString(requestObject)));
 
         response.andExpect(status().isBadRequest());
-
-
     }
 
     private User getValidUser(){

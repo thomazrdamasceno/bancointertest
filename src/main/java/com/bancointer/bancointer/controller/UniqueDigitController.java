@@ -14,8 +14,12 @@ import java.util.List;
 @Data
 public class UniqueDigitController {
 
-    @Autowired
     private UniqueDigitService uniqueDigitService;
+
+    @Autowired
+    public UniqueDigitController(UniqueDigitService uniqueDigitService){
+        this.uniqueDigitService = uniqueDigitService;
+    }
 
     @PostMapping(path="/calcular-digito/")
     public UniqueDigit calculateUniqueDigit(@Valid @RequestBody CalculateDigitRequestObject request){

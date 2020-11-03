@@ -10,12 +10,6 @@ public class UniqueDigitUtils {
 
     }
 
-    public static UniqueDigit getResultAndReturnObject(UniqueDigit uniqueDigitObj){
-        int result = getUniqueDigit(uniqueDigitObj.getN(), uniqueDigitObj.getK());
-        uniqueDigitObj.setResult(result);
-        return uniqueDigitObj;
-    }
-
     public static int getUniqueDigit(String n, int k) {
 
        UniqueDigitMapKeys keys =  new UniqueDigitMapKeys(n,k);
@@ -45,7 +39,7 @@ public class UniqueDigitUtils {
         }
         int result =  p.chars()
                 .map(Character::getNumericValue)
-                .reduce(0, (subtotal, elemento) -> subtotal + elemento);
+                .reduce(0, Integer::sum);
 
         return recursiveReduceNumber(String.valueOf(result));
 

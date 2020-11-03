@@ -12,5 +12,5 @@ public interface IUserService {
     Optional<User> findById(Long id);
     List<User> findAll();
     String getPublicKeyByUserId(Long idUser);
-    User setPublicKey(SetPublicKeyRequestObject request);
+    User updatePublicKeyForUser(SetPublicKeyRequestObject request);
 }

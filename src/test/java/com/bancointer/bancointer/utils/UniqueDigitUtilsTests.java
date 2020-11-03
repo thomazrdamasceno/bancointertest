@@ -7,12 +7,12 @@ public class UniqueDigitUtilsTests {
 
     @Test
     @DisplayName("Cálculo do digito único de acordo com os parâmetros n e k (k>1)")
-    void calculoDigitoUnicoQuandoKMaiorQueUm(){
+    void calculateUniqueDigitWhenKGreaterThanOne(){
             String n = "9875";
             int k = 4;
-            int resultadoEsperado = 8;
-            int resultadoObtido = UniqueDigitUtils.getUniqueDigit(n,k);
-            assertEquals(resultadoEsperado, resultadoObtido);
+            int expectedResult= 8;
+            int result = UniqueDigitUtils.getUniqueDigit(n,k);
+            assertEquals(expectedResult, result);
     }
 
 

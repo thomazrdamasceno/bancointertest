@@ -9,39 +9,39 @@ public class UniqueDigitCacheMemoryTests {
 
     @Test
     @DisplayName("Teste de inclusão e recuperação de itens pelas chaves n e k do cache")
-    void testAddAndGetItensUsingKeys(){
+    void testAddAndGetItemsUsingKeys(){
 
         Integer k = 1;
         String n = "9875";
         Integer result = 25;
         UniqueDigitCacheMemory.saveResult(new UniqueDigitMapKeys(n,k), result);
-        Integer resultadoDoCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys(n,k));
-        assertEquals(result, resultadoDoCache);
+        Integer resultCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys(n,k));
+        assertEquals(result, resultCache);
     }
 
     @Test
     @DisplayName("Ao tentar recuperar um conjunto k e n inexistente, o resultado deve ser null")
-    void testRecuperacaoKeysInexistentes(){
+    void testNonExistentKeys(){
 
         Integer k = 1;
         String n = "9875";
         Integer result = 25;
         UniqueDigitCacheMemory.saveResult(new UniqueDigitMapKeys(n,k), result);
-        Integer resultadoDoCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys("55",2));
-        assertNull(resultadoDoCache);
+        Integer resultCache = UniqueDigitCacheMemory.getResult(new UniqueDigitMapKeys("55",2));
+        assertNull(resultCache);
     }
 
     @Test
     @DisplayName("O Cache deve guardar apenas os ultimos 10 regitros")
-    void deveGuardarApenasOsUltimos10Registros(){
+    void tesSaveOnly10LatestRecords(){
 
-        int quantidadeDeItensParaInserir = 11;
-        for(int i = 1; i<=quantidadeDeItensParaInserir; i++){
+        int countItems = 11;
+        for(int i = 1; i <= countItems; i++){
             UniqueDigitMapKeys keys = new UniqueDigitMapKeys(String.valueOf(i),i);
             UniqueDigitCacheMemory.saveResult(keys, 25);
         }
 
-        int totalDeItensNoCache =  UniqueDigitCacheMemory.getTotalItems();
-        assertTrue(totalDeItensNoCache <=10 );
+        int totalItemsInCache =  UniqueDigitCacheMemory.getTotalItems();
+        assertTrue(totalItemsInCache <=10 );
     }
 }
