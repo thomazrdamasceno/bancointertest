@@ -1,7 +1,7 @@
 package com.bancointer.bancointer.controller;
 
 import com.bancointer.bancointer.domain.UniqueDigit;
-import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
+import com.bancointer.bancointer.dto.CalculateDigitRequestDTO;
 import com.bancointer.bancointer.service.UniqueDigitService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class UniqueDigitController {
     }
 
     @PostMapping(path="/calcular-digito/")
-    public UniqueDigit calculateUniqueDigit(@Valid @RequestBody CalculateDigitRequestObject request){
+    public UniqueDigit calculateUniqueDigit(@Valid @RequestBody CalculateDigitRequestDTO request){
         return uniqueDigitService.calculateDigit(request);
     }
 

@@ -1,4 +1,4 @@
-package com.bancointer.bancointer.requestmodel;
+package com.bancointer.bancointer.dto;
 
 import lombok.Data;
 import javax.validation.constraints.Min;
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 @Data
-public class CalculateDigitRequestObject {
+public class CalculateDigitRequestDTO {
 
     private Long idUsuario;
 

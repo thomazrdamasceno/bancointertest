@@ -1,6 +1,6 @@
 package com.bancointer.bancointer.controllers;
 import com.bancointer.bancointer.domain.User;
-import com.bancointer.bancointer.requestmodel.SetPublicKeyRequestObject;
+import com.bancointer.bancointer.dto.SetPublicKeyRequestDTO;
 import com.bancointer.bancointer.security.CryptographyRSA2048;
 import com.bancointer.bancointer.security.ICryptography;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -62,7 +62,7 @@ public class UserControllerTests {
     @DisplayName("A chave publica deve ser setada no objeto usuario")
     void testSetValidPublicKey() throws Exception {
         User user = getValidUser();
-        SetPublicKeyRequestObject requestObject = new  SetPublicKeyRequestObject();
+        SetPublicKeyRequestDTO requestObject = new SetPublicKeyRequestDTO();
         requestObject.setIdUsuario(1L);
         requestObject.setChave(user.getPublicKey());
         ResultActions response = mockMvc.perform(post(BASE_PATH+"/set-chave-publica")
@@ -81,7 +81,7 @@ public class UserControllerTests {
 
     @Test
     void testSetInvalidPublicKey() throws Exception {
-        SetPublicKeyRequestObject requestObject = new  SetPublicKeyRequestObject();
+        SetPublicKeyRequestDTO requestObject = new SetPublicKeyRequestDTO();
         requestObject.setIdUsuario(1L);
         requestObject.setChave(INVALID_KEY);
 

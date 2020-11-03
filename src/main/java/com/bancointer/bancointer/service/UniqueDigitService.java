@@ -4,7 +4,7 @@ import com.bancointer.bancointer.domain.UniqueDigit;
 import com.bancointer.bancointer.domain.User;
 import com.bancointer.bancointer.repository.IUniqueDigitRepository;
 import com.bancointer.bancointer.repository.IUserRepository;
-import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
+import com.bancointer.bancointer.dto.CalculateDigitRequestDTO;
 import com.bancointer.bancointer.utils.UniqueDigitCalculator;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class UniqueDigitService implements IUniqueDigitService {
     }
 
     @Override
-    public UniqueDigit calculateDigit(CalculateDigitRequestObject request) {
+    public UniqueDigit calculateDigit(CalculateDigitRequestDTO request) {
         UniqueDigit uniqueDigit = new UniqueDigit();
         uniqueDigit.setK(request.getK());
         uniqueDigit.setN(request.getN());

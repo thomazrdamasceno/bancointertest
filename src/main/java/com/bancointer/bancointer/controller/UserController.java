@@ -1,7 +1,7 @@
 package com.bancointer.bancointer.controller;
 
 import com.bancointer.bancointer.domain.User;
-import com.bancointer.bancointer.requestmodel.SetPublicKeyRequestObject;
+import com.bancointer.bancointer.dto.SetPublicKeyRequestDTO;
 import com.bancointer.bancointer.service.IUserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("/set-chave-publica")
     @ResponseStatus(HttpStatus.OK)
-    public User updatePublicKeyForUser(@Valid @RequestBody SetPublicKeyRequestObject request ){
+    public User updatePublicKeyForUser(@Valid @RequestBody SetPublicKeyRequestDTO request ){
         return userService.updatePublicKeyForUser(request);
     }
 

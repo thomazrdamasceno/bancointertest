@@ -2,7 +2,7 @@ package com.bancointer.bancointer.service;
 
 import com.bancointer.bancointer.domain.UniqueDigit;
 import com.bancointer.bancointer.repository.IUniqueDigitRepository;
-import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
+import com.bancointer.bancointer.dto.CalculateDigitRequestDTO;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +21,7 @@ public class UniqueDigitServiceTest {
 
     @Test
     public void testCalculateDigit(){
-        CalculateDigitRequestObject request = new CalculateDigitRequestObject();
+        CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
         request.setK(1);
         request.setN("9875");
         UniqueDigit digitReturned = uniqueDigitService.calculateDigit(request);

@@ -1,11 +1,11 @@
-package com.bancointer.bancointer.requestmodel;
+package com.bancointer.bancointer.dto;
 
 import com.bancointer.bancointer.validators.IsValidPublicKey;
 import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class SetPublicKeyRequestObject {
+public class SetPublicKeyRequestDTO {
 
     @IsValidPublicKey
     private String chave;

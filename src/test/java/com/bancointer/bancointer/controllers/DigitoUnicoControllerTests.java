@@ -1,5 +1,5 @@
 package com.bancointer.bancointer.controllers;
-import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
+import com.bancointer.bancointer.dto.CalculateDigitRequestDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class DigitoUnicoControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private ResultActions resultResponseCalculateDigit(CalculateDigitRequestObject request) throws Exception {
+    private ResultActions resultResponseCalculateDigit(CalculateDigitRequestDTO request) throws Exception {
 
         return mockMvc.perform(post("/api/digito-unico/calcular-digito/")
                 .contentType("application/json")
@@ -35,7 +35,7 @@ public class DigitoUnicoControllerTests {
     public void testCalculateDigit() throws Exception {
         String n = "9785";
         int k = 1;
-        CalculateDigitRequestObject request = new CalculateDigitRequestObject();
+        CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
         request.setK(k);
         request.setN(n);
         resultResponseCalculateDigit(request)
@@ -47,7 +47,7 @@ public class DigitoUnicoControllerTests {
     public void testCalculateInvalidKDigit() throws Exception {
         String validN = "9785";
         int invalidK = -1;
-        CalculateDigitRequestObject request = new CalculateDigitRequestObject();
+        CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
         request.setK(invalidK);
         request.setN(validN);
         resultResponseCalculateDigit(request)
@@ -58,7 +58,7 @@ public class DigitoUnicoControllerTests {
     public void testCalculateInvalidNDigit() throws Exception {
         String invalidN = "-9785";
         int validK = 1;
-        CalculateDigitRequestObject request = new CalculateDigitRequestObject();
+        CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
         request.setK(validK);
         request.setN(invalidN);
         resultResponseCalculateDigit(request)
@@ -69,7 +69,7 @@ public class DigitoUnicoControllerTests {
     public void testCalculateOtherInvalidNDigit() throws Exception {
         String invalidN = "-9785asda";
         int validK = 1;
-        CalculateDigitRequestObject request = new CalculateDigitRequestObject();
+        CalculateDigitRequestDTO request = new CalculateDigitRequestDTO();
         request.setK(validK);
         request.setN(invalidN);
         resultResponseCalculateDigit(request)

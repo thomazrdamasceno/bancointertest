@@ -2,7 +2,7 @@ package com.bancointer.bancointer.service;
 
 import com.bancointer.bancointer.domain.User;
 import com.bancointer.bancointer.repository.IUserRepository;
-import com.bancointer.bancointer.requestmodel.SetPublicKeyRequestObject;
+import com.bancointer.bancointer.dto.SetPublicKeyRequestDTO;
 import com.bancointer.bancointer.security.CryptographyRSA2048;
 import com.bancointer.bancointer.security.ICryptography;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,7 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public User updatePublicKeyForUser(SetPublicKeyRequestObject request) {
+    public User updatePublicKeyForUser(SetPublicKeyRequestDTO request) {
         User usuario = userRepository
                 .findById(request.getIdUsuario())
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND) );

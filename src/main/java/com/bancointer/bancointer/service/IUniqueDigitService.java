@@ -1,8 +1,8 @@
 package com.bancointer.bancointer.service;
 
 import com.bancointer.bancointer.domain.UniqueDigit;
-import com.bancointer.bancointer.requestmodel.CalculateDigitRequestObject;
+import com.bancointer.bancointer.dto.CalculateDigitRequestDTO;
 
 public interface IUniqueDigitService {
-    UniqueDigit calculateDigit(CalculateDigitRequestObject request);
+    UniqueDigit calculateDigit(CalculateDigitRequestDTO request);
 }

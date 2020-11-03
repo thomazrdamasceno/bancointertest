@@ -2,7 +2,7 @@ package com.bancointer.bancointer.service;
 
 import com.bancointer.bancointer.domain.User;
 import com.bancointer.bancointer.repository.IUserRepository;
-import com.bancointer.bancointer.requestmodel.SetPublicKeyRequestObject;
+import com.bancointer.bancointer.dto.SetPublicKeyRequestDTO;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Optional;
@@ -31,7 +31,7 @@ public class UserServiceTest {
 
     @Test
     public void testUpdatePublicKeyForUser(){
-        SetPublicKeyRequestObject request = new SetPublicKeyRequestObject();
+        SetPublicKeyRequestDTO request = new SetPublicKeyRequestDTO();
         Long idUser = 1L;
         String keyToUpdate = "KEY_TO_UPDATE";
         request.setChave(keyToUpdate);
