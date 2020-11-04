@@ -1,6 +1,5 @@
 package com.bancointer.bancointer.utils;
 
-import com.bancointer.bancointer.domain.UniqueDigitMapKeys;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

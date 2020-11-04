@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UniqueDigit {
+public class UniqueDigit extends GenericEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

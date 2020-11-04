@@ -173,7 +173,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \r\n    \"name\": \"Thomaz Reis Damasceno\",\r\n    \"email\": \"thomazrdamasceno@gmail.com\",\r\n    \"publicKey\": \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAydWojUdRIwKngdOqfnlgeY67CX5Xw1krxdPJzzu4UgYeGoq26KrsJeh/ojYuh3763KmsbZUWxOnank/7OJvSeoeDC9YMj3zTHBxkkTokrSk1KE9g8QQqh6cpki4rRKi/dkJn2w72RzpYvdLuSnH/W2nvBeRUnUAYgIowZbMSPmlUxsSQemmZC22r4IePYx/cmAY76K50Q9HJrIr64pFRr+POGBswj5hJnY4uE9EI0Tek+WGLk4800uDVUD7YAa5QLNb7xEEluec2ZYOrJFM8ouoZPvC34YWqTFwL+e9mEC+So8h1p/tQo0vEsJlLPFUPgTuQY95aoCu66lVAmhcyAQIDAQAB\"\r\n\r\n}",
+					"raw": "{\r\n    \"name\": \"Thomaz Reis Damasceno\",\r\n    \"email\": \"thomazrdamasceno@gmail.com\",\r\n    \"publicKey\": \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz2KjdrBZlrrtdT5eVe+91vypIKeuzg/07rCu0GZOpRZjZp6ARVgF1By7eKK4fkuKozjPBK7TJe7LpRZvpGUPzcv7H3sbYhCRaPLZ7F0ozU7BNM4dYBnoPlcfE7xGBTUlfpBTYEWRBsRJLM8XnpLT5gsh9StQ3XlOYcCp0f1i1wa5O69Sqw/Jh8Sz0SWIpAQvEUy1R/KgQ2fSwRa2yKBHF6adQ6AXgk/ROWrIWX6nI71KUC7otmuH8P2Abqor+J7lnQ5YaL+6Tl6lj89Uv1ew4VmA0xzrCNSPQ1K0AjzYriJUU7frj5G/HceM0qkZ1TfzeF5vSW5eRuSrHQo863Wl7QIDAQAB\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

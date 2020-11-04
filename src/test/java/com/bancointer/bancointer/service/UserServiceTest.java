@@ -5,6 +5,9 @@ import com.bancointer.bancointer.repository.IUserRepository;
 import com.bancointer.bancointer.dto.SetPublicKeyRequestDTO;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -13,11 +16,13 @@ import static org.mockito.Mockito.when;
 public class UserServiceTest {
 
     private UserService userService;
+
+    @Mock
     private IUserRepository repository;
 
     @Before
     public void init() {
-        repository  = mock(IUserRepository.class);
+        MockitoAnnotations.initMocks(this);
         userService = new UserService(repository);
     }
 

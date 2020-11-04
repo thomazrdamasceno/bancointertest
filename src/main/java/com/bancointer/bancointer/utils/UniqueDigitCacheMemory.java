@@ -1,6 +1,5 @@
 package com.bancointer.bancointer.utils;
 
-import com.bancointer.bancointer.domain.UniqueDigitMapKeys;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -10,9 +9,7 @@ public  class UniqueDigitCacheMemory {
     private static Map<UniqueDigitMapKeys, Integer> UNIQUE_DIGIT_CACHE_MAP=  new LinkedHashMap<>();
 
     //Garantir a não-instanciação da classe
-    private UniqueDigitCacheMemory(){
-
-    }
+    private UniqueDigitCacheMemory(){}
 
     public static void  saveResult(UniqueDigitMapKeys keys, Integer result){
         if(getTotalItems() == 10) {

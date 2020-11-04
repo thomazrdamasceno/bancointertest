@@ -15,4 +15,6 @@ public class UniqueDigitCalculatorTests {
         assertEquals(UniqueDigitCalculator.getUniqueDigit("900",2), 9);
     }
 
+
+
 }

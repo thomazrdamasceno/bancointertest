@@ -20,7 +20,6 @@ public class ApplicationControllerAdvice {
         List<String> messages = bidingResult.getAllErrors().stream()
                 .map(objectError -> objectError.getDefaultMessage())
                 .collect(Collectors.toList());
-
         return new ApiErrors(messages);
     }
 }

@@ -10,16 +10,14 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@Entity
+@IsValidPublicKey
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@IsValidPublicKey
-public class User implements IUser {
+@Entity
+public class User  extends GenericEntity {
 
     static CryptographyRSA2048 cryptography  = new CryptographyRSA2048();
     static Logger logger =  LoggerFactory.getLogger(User.class);
@@ -46,14 +44,12 @@ public class User implements IUser {
     @OneToMany(mappedBy = "user", targetEntity = UniqueDigit.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UniqueDigit> calculatedDigits;
 
-    @Override
     public User encryptFields() {
         this.setName(cryptography.encrypt(this.getPublicKey(), this.getName()));
         this.setEmail(cryptography.encrypt(this.getPublicKey(), this.getEmail()));
         return this;
     }
 
-    @Override
     public void clearEncryptedFields() {
         this.setName(null);
         this.setEmail(null);
